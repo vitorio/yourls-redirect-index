@@ -1,7 +1,7 @@
 Title of your plugin
 ====================
 
-Plugin for [YOURLS](http://yourls.org) `<YOURLS 1.4 required>`. 
+Plugin for [YOURLS](http://yourls.org) `<1.4>`. 
 
 Description
 -----------
