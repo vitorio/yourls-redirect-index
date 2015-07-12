@@ -57,9 +57,7 @@ function redirindex_admin_display( $message = false, $message_type = false ) {
 
 		<p><?php
 			if( !file_exists( YOURLS_ABSPATH . '/index.php' ) ) {
-				$str_index = yourls__( 'Have you copied the index.php file into your YOURLS base directory?', 'redirindex' );
-			} else {
-				$str_index = '';
+				yourls_e( 'Have you copied the index.php file into your YOURLS base directory?', 'redirindex' );
 			}
 		?></p>
 	<?php
