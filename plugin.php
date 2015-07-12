@@ -40,30 +40,29 @@ function redirindex_admin_display( $message = false, $message_type = false ) {
 	} else {
 		$message = '';
 	}
-	$str_title = yourls__( 'Redirect Index', 'redirindex' );
-	$str_save = yourls__( 'Save', 'redirindex' );
-	if( !file_exists( YOURLS_ABSPATH . '/index.php' ) ) {
-		$str_index = yourls__( 'Have you copied the index.php file into your YOURLS base directory?', 'redirindex' );
-	} else {
-		$str_index = '';
-	}
 	
 	// Echo the page content
-    echo <<<HTML
-<h2>$str_title</h2>
-$message
+	?>
+		<h2><?php yourls_e( 'Redirect Index', 'redirindex' ); ?></h2>
+		<?php echo $message; ?>
 
-<p>Enter a URL to which the index page will redirect:</p>
-<form method="post">
-<input type="hidden" name="action" value="redirindex" />
-<input type="hidden" name="nonce" value="$nonce" />
+		<p><?php yourls_e( 'Enter a URL to which the index page will redirect:', 'redirindex' ); ?></p>
+		<form method="post">
+			<input type="hidden" name="action" value="redirindex" />
+			<input type="hidden" name="nonce" value="<?php echo $nonce; ?>" />
 
-<p><input type="url" name="redir_url" value="$current_url" class="text" /></p>
-<p><input type="submit" value="$str_save" class="button primary" /></p>
-</form>
+			<p><input type="url" name="redir_url" value="<?php echo $current_url; ?>" class="text" /></p>
+			<p><input type="submit" value="<?php echo yourls_e( 'Save', 'redirindex' ); ?>" class="button primary" /></p>
+		</form>
 
-<p>$str_index</p>
-HTML;
+		<p><?php
+			if( !file_exists( YOURLS_ABSPATH . '/index.php' ) ) {
+				$str_index = yourls__( 'Have you copied the index.php file into your YOURLS base directory?', 'redirindex' );
+			} else {
+				$str_index = '';
+			}
+		?></p>
+	<?
 }
 
 // If form data has been sent
