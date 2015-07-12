@@ -62,7 +62,7 @@ function redirindex_admin_display( $message = false, $message_type = false ) {
 				$str_index = '';
 			}
 		?></p>
-	<?
+	<?php
 }
 
 // If form data has been sent
