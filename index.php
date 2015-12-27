@@ -13,7 +13,7 @@ require_once( dirname(__FILE__) . '/includes/load-yourls.php' );
 $redir_url = yourls_get_option( 'redirindex_url' );
 
 // Perform the redirect
-if( yourls_is_active_plugin( 'redirect-index/plugin.php' ) && !empty( $redir_url ) ) {
+if( ( yourls_is_active_plugin( 'yourls-redirect-index/plugin.php' ) || yourls_is_active_plugin( 'redirect-index/plugin.php' ) ) && !empty( $redir_url ) ) {
 	Header( "Location: $redir_url" );
 } else {
 	echo '<h2>' . yourls__( 'YOURLS Redirect Index', 'redirindex' ) . '</h2>';
