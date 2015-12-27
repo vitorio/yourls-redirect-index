@@ -69,11 +69,14 @@ function redirindex_admin_save() {
 
 	$new_url = yourls_sanitize_url( $_POST['redir_url'] );
 
-	if( yourls_update_option( 'redirindex_url', $new_url ) ) {
-		$message = yourls__( 'URL saved successfully.', 'redirindex' );;
+	if( $new_url == yourls_get_option( 'redirindex_url' ) ) {
+		$message = sprintf( yourls__( 'The URL is the same as what you tried to change it to, so it has been kept. <a href="%1$s">Check out your redirect!</a>', 'redirindex' ), YOURLS_SITE );
+		redirindex_admin_display( $message, 'error' );
+	} elseif( yourls_update_option( 'redirindex_url', $new_url ) ) {
+		$message = sprintf( yourls__( 'URL saved successfully. <a href="%1$s">Check out your new redirect!</a>', 'redirindex' ), YOURLS_SITE );
 		redirindex_admin_display( $message, 'success' );
 	} else {
-		$message = yourls__( 'URL could not be saved. It\'s either the same as the existing URL or something else failed.', 'redirindex' );
+		$message = yourls__( 'Something went wrong and the URL could not be saved. Please try again.', 'redirindex' );
 		redirindex_admin_display( $message, 'error' );
 	}
 }
