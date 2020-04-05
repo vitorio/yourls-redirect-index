@@ -43,23 +43,31 @@ function redirindex_admin_display( $message = false, $message_type = false ) {
 	
 	// Echo the page content
 	?>
-		<h2><?php yourls_e( 'Redirect Index', 'redirindex' ); ?></h2>
-		<?php echo $message; ?>
-
-		<p><?php yourls_e( 'Enter a URL to which the index page will redirect:', 'redirindex' ); ?></p>
-		<form method="post">
-			<input type="hidden" name="action" value="redirindex" />
-			<input type="hidden" name="nonce" value="<?php echo $nonce; ?>" />
-
-			<p><input type="url" name="redir_url" value="<?php echo $current_url; ?>" class="text" /></p>
-			<p><input type="submit" value="<?php echo yourls_e( 'Save', 'redirindex' ); ?>" class="button primary" /></p>
-		</form>
-
-		<p><?php
-			if( !file_exists( YOURLS_ABSPATH . '/index.php' ) ) {
-				yourls_e( 'Have you copied the index.php file into your YOURLS base directory?', 'redirindex' );
+		<style>
+			.full-width {
+				width: 100%;
 			}
-		?></p>
+		</style>
+	
+		<main role="main" class="sub_wrap">
+			<h2><?php yourls_e( 'Redirect Index', 'redirindex' ); ?></h2>
+			<?php echo $message; ?>
+	
+			<p><?php yourls_e( 'Enter a URL to which the index page will redirect:', 'redirindex' ); ?></p>
+			<form method="post">
+				<input type="hidden" name="action" value="redirindex" />
+				<input type="hidden" name="nonce" value="<?php echo $nonce; ?>" />
+	
+				<p><input type="url" name="redir_url" value="<?php echo $current_url; ?>" class="text full-width" /></p>
+				<p><input type="submit" value="<?php echo yourls_e( 'Save', 'redirindex' ); ?>" class="button primary" /></p>
+			</form>
+	
+			<p><?php
+				if( !file_exists( YOURLS_ABSPATH . '/index.php' ) ) {
+					yourls_e( 'Have you copied the index.php file into your YOURLS base directory?', 'redirindex' );
+				}
+			?></p>
+		</main>
 	<?php
 }
 
