@@ -3,7 +3,7 @@
 Plugin Name: Redirect Index
 Plugin URI: https://github.com/tomslominski/yourls-redirect-index
 Description: Redirect the base directory of YOURLS to a user selected link
-Version: 1.0
+Version: 1.1
 Author: Tom Slominski
 Author URI: http://tomslominski.net/
 */
