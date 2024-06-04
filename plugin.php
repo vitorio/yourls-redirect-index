@@ -18,6 +18,32 @@ function redirindex_init() {
     yourls_load_custom_textdomain( 'redirindex', dirname( __FILE__ ) . '/translations' );
 }
 
+// Register handler for when a short URL doesn't exist, so we don't redirect
+yourls_add_action( 'loader_failed', 'redirindex_loaderfailed' );
+function redirindex_loaderfailed() {
+    // The default HTML page for yourls_die has lots of links to the main YOURLS site,
+    // so we pretend the header and footer have already been sent so we just get a plain 403 page
+    global $yourls_actions;
+    
+    if ( !isset( $yourls_actions ) ) {
+        $yourls_actions = [];
+    }
+    if ( !isset( $yourls_actions[ 'html_head' ] ) ) {
+        $yourls_actions[ 'html_head' ] = 1;
+    }
+    else {
+        ++$yourls_actions[ 'html_head' ];
+    }
+    if ( !isset( $yourls_actions[ 'html_footer' ] ) ) {
+        $yourls_actions[ 'html_footer' ] = 1;
+    }
+    else {
+        ++$yourls_actions[ 'html_footer' ];
+    }
+    
+    yourls_die( yourls__( 'Unauthorized action or expired link' ), yourls__( 'Error' ), 403 );
+}
+
 // The function that will draw the admin page
 function redirindex_admin() {
 	if( isset( $_POST['action'] ) && $_POST['action'] == 'redirindex' ) {
